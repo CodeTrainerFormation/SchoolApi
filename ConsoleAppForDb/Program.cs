@@ -10,12 +10,7 @@ namespace ConsoleAppForDb
         {
             using (SchoolContext context = new SchoolContext())
             {
-                //destruction de la database
-                context.Database.EnsureDeleted();
-
-                //création de la database
-                context.Database.EnsureCreated();
-
+                context.Initialize(true);
 
                 var classrooms = context.Classrooms.ToList();
 
