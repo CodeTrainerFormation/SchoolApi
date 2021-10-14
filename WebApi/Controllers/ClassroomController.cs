@@ -26,7 +26,10 @@ namespace WebApi.Controllers
         [HttpGet]
         public async Task<ActionResult<List<Classroom>>> GetClassrooms()
         {
-            return await context.Classrooms.ToListAsync();
+            return await context.Classrooms
+                                .Include(c => c.Students)
+                                .Include(c => c.Teacher)
+                                .ToListAsync();
         }
 
         // get by id
