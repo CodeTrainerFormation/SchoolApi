@@ -56,6 +56,7 @@ namespace Dal
                     Average = 12.0,
                     IsClassDelegate = false,
                     Age = 32,
+                    ClassroomId = 1
                 },
                 new Student()
                 {
@@ -64,6 +65,7 @@ namespace Dal
                     Average = 19.0,
                     IsClassDelegate = false,
                     Age = 28,
+                    ClassroomId = 1
                 },
                 new Student()
                 {
@@ -72,6 +74,7 @@ namespace Dal
                     Average = 9.0,
                     IsClassDelegate = false,
                     Age = 30,
+                    ClassroomId = 1
                 },
                 new Student()
                 {
@@ -80,6 +83,7 @@ namespace Dal
                     Average = 13.0,
                     IsClassDelegate = false,
                     Age = 38,
+                    ClassroomId = 2
                 },
                 new Student()
                 {
@@ -88,6 +92,7 @@ namespace Dal
                     Average = 14.0,
                     IsClassDelegate = true,
                     Age = 35,
+                    ClassroomId = 2
                 },
             };
 
@@ -104,7 +109,7 @@ namespace Dal
                     Discipline = "Economie",
                     HiringDate = new DateTime(2012, 12, 20),
                     Age = 40,
-                    //Salary = 3000,
+                    ClassroomId = 1
                 },
                 new Teacher()
                 {
@@ -113,7 +118,7 @@ namespace Dal
                     Discipline = "Medecine",
                     HiringDate = new DateTime(2018, 05, 20),
                     Age = 45,
-                    //Salary = 2800,
+                    ClassroomId = 2
                 },
             };
             context.Teachers.AddRange(teachers);
