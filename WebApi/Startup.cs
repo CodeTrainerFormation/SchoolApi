@@ -45,9 +45,9 @@ namespace WebApi
 
             app.Use(async (context, next) =>
             {
-                logger.LogInformation("middelware started");
+                logger.LogInformation("middleware started");
                 await next.Invoke();
-                logger.LogInformation("middelware finished");
+                logger.LogInformation("middleware finished");
             });
 
             app.UseHttpsRedirection();
