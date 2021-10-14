@@ -1,4 +1,5 @@
-﻿using DomainModel;
+﻿using Dal;
+using DomainModel;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -36,13 +37,19 @@ namespace WebApi.Controllers
                 Corridor = "Bleu",
             },
         };
+        private readonly SchoolContext context;
+
+        public ClassroomController(SchoolContext context)
+        {
+            this.context = context;
+        }
 
         // get all
         // GET: api/Classroom
         [HttpGet]
         public ActionResult<List<Classroom>> GetClassrooms()
         {
-            return classrooms;
+            return context.Classrooms.ToList();
         }
 
         // get by id
