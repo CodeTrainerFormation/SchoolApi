@@ -12,6 +12,7 @@ namespace DomainModel
     {
         public double Average { get; set; }
         public bool IsClassDelegate { get; set; }
+        public string Email { get; set; }
 
         public int ClassroomId { get; set; }
         public virtual Classroom Classroom { get; set; }

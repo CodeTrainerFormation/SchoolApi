@@ -2,6 +2,7 @@
 using DomainModel;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,30 +14,6 @@ namespace WebApi.Controllers
     [ApiController]
     public class ClassroomController : ControllerBase
     {
-        private static List<Classroom> classrooms = new List<Classroom>()
-        {
-            new Classroom
-            {
-                ClassroomId = 1,
-                Name = "Salle Bill Gates",
-                Floor = 5,
-                Corridor = "Rouge",
-            },
-            new Classroom
-            {
-                ClassroomId = 2,
-                Name = "Salle Satya Nadella",
-                Floor = 2,
-                Corridor = "Jaune",
-            },
-            new Classroom
-            {
-                ClassroomId = 3,
-                Name = "Salle Scott Hanselman",
-                Floor = 3,
-                Corridor = "Bleu",
-            },
-        };
         private readonly SchoolContext context;
 
         public ClassroomController(SchoolContext context)
@@ -47,20 +24,22 @@ namespace WebApi.Controllers
         // get all
         // GET: api/Classroom
         [HttpGet]
-        public ActionResult<List<Classroom>> GetClassrooms()
+        public async Task<ActionResult<List<Classroom>>> GetClassrooms()
         {
-            return context.Classrooms.ToList();
+            return await context.Classrooms.ToListAsync();
         }
 
         // get by id
         // GET: api/Classroom/5
         [HttpGet("{classroomId}")]
-        public ActionResult<Classroom> GetClassroom(int classroomId)
+        public async Task<ActionResult<Classroom>> GetClassroom(int classroomId)
         {
             if (classroomId <= 0)
                 return BadRequest();
 
-            var classroom = classrooms.First(c => c.ClassroomId == classroomId);
+            var classroom = await context.Classrooms.FindAsync(classroomId);
+            //var classroom = await context.Classrooms.FirstAsync(c => c.ClassroomId == classroomId);
+            //var classroom = await context.Classrooms.SingleAsync(c => c.ClassroomId == classroomId);
 
             if (classroom == null)
                 return NotFound();
@@ -71,14 +50,10 @@ namespace WebApi.Controllers
         // add a classroom
         // POST: api/Classroom
         [HttpPost]
-        public ActionResult<Classroom> PostClassroom(Classroom classroom)
+        public async Task<ActionResult<Classroom>> PostClassroom(Classroom classroom)
         {
-            //if(ModelState.IsValid)
-            //{
-            //    ModelState.AddModelError()
-            //}
-
-            classrooms.Add(classroom);
+            context.Classrooms.Add(classroom);
+            await context .SaveChangesAsync();
 
             return Created($"api/classroom/{classroom.ClassroomId}", classroom);
         }
@@ -86,19 +61,14 @@ namespace WebApi.Controllers
         // update a classroom
         // PUT: api/Classroom/5
         [HttpPut("{classroomId}")]
-        public ActionResult<Classroom> PutClassroom(int classroomId, Classroom classroom)
+        public async Task<ActionResult<Classroom>> PutClassroom(int classroomId, Classroom classroom)
         {
             if (classroomId <= 0)
                 return BadRequest();
 
-            var classroomToUpdate = classrooms.First(c => c.ClassroomId == classroomId);
-
-            if (classroomToUpdate == null)
-                return NotFound();
-
-            classroomToUpdate.Corridor = classroom.Corridor;
-            classroomToUpdate.Floor = classroom.Floor;
-            classroomToUpdate.Name = classroom.Name;
+            //context.Entry(classroom).State = EntityState.Modified;
+            context.Classrooms.Update(classroom);
+            await context.SaveChangesAsync();
 
             return NoContent();
         }
@@ -106,17 +76,18 @@ namespace WebApi.Controllers
         // delete a classroom
         // DELETE: api/Classroom/5
         [HttpDelete("{classroomId}")]
-        public IActionResult DeleteClassroom(int classroomId)
+        public async Task<IActionResult> DeleteClassroom(int classroomId)
         {
             if (classroomId <= 0)
                 return BadRequest();
 
-            var classroom = classrooms.Single(c => c.ClassroomId == classroomId);
+            var classroom = context.Classrooms.Single(c => c.ClassroomId == classroomId);
 
             if (classroom == null)
                 return NotFound();
 
-            classrooms.Remove(classroom);
+            context.Classrooms.Remove(classroom);
+            await context.SaveChangesAsync();
 
             return NoContent();
         }
