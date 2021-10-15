@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.31702.278
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApi", "WebApi\WebApi.csproj", "{120F775A-3834-453D-A4DF-FE81BDF391CC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApp", "ConsoleApp\ConsoleApp.csproj", "{0E9685A2-B39C-4EC0-945D-43D15B2A995F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleApp", "ConsoleApp\ConsoleApp.csproj", "{0E9685A2-B39C-4EC0-945D-43D15B2A995F}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Clients", "Clients", "{25FD1A32-544E-4A68-93AB-F6238205E773}"
 EndProject
@@ -32,13 +32,13 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "WebSite", "WebSite\", "{DF8
 		SlnRelativePath = "WebSite\"
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DomainModel", "DomainModel\DomainModel.csproj", "{178F9284-5574-4B3C-B164-3768A57361F2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DomainModel", "DomainModel\DomainModel.csproj", "{178F9284-5574-4B3C-B164-3768A57361F2}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{CFEFCB6A-75EE-4ECF-8A07-F0B4E47527A0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dal", "Dal\Dal.csproj", "{C0455956-A4A0-484A-9583-D07A20EE2D07}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dal", "Dal\Dal.csproj", "{C0455956-A4A0-484A-9583-D07A20EE2D07}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleAppForDb", "ConsoleAppForDb\ConsoleAppForDb.csproj", "{79AA6AEF-48DC-4A4E-836D-7990662E7110}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleAppForDb", "ConsoleAppForDb\ConsoleAppForDb.csproj", "{79AA6AEF-48DC-4A4E-836D-7990662E7110}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

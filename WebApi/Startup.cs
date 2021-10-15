@@ -48,6 +48,16 @@ namespace WebApi
                 c.IncludeXmlComments(xmlPath);
             });
 
+            services.AddCors(options =>
+            {
+                options.AddDefaultPolicy(p =>
+                {
+                    p.AllowAnyHeader();
+                    p.WithOrigins("http://localhost:4200/");
+                    p.WithMethods("GET", "POST", "PUT", "DELETE", "OPTIONS");
+                });
+            });
+
             services.AddControllers();
         }
 
@@ -70,6 +80,8 @@ namespace WebApi
             });
 
             app.UseHttpsRedirection();
+
+            app.UseCors();
 
             app.UseStaticFiles();
 
