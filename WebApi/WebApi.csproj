@@ -5,6 +5,11 @@
     <UserSecretsId>6a11fe28-f918-4047-8d67-30a420608bf4</UserSecretsId>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>F:\Dev\CSharp-DemoExo\WebApi\SchoolApi\WebApi\WebApi.xml</DocumentationFile>
+    <NoWarn>1701;1702;1591</NoWarn>
+  </PropertyGroup>
+
   <ItemGroup>
     <ProjectReference Include="..\Dal\Dal.csproj" />
     <ProjectReference Include="..\DomainModel\DomainModel.csproj" />
@@ -21,6 +26,7 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="5.0.2" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.2" />
   </ItemGroup>
 
 </Project>

@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 
 namespace WebApi.Controllers
 {
+    [Produces("application/json")]
     [Route("api/[controller]")]
     [ApiController]
     public class ClassroomController : ControllerBase
@@ -34,6 +35,11 @@ namespace WebApi.Controllers
 
         // get by id
         // GET: api/Classroom/5
+        /// <summary>
+        /// Permet de récuperer une classe depuis son identifiant
+        /// </summary>
+        /// <param name="classroomId">identifiant de la classe</param>
+        /// <returns>Un objet de type classe</returns>
         [HttpGet("{classroomId}")]
         public async Task<ActionResult<Classroom>> GetClassroom(int classroomId)
         {
@@ -56,7 +62,7 @@ namespace WebApi.Controllers
         public async Task<ActionResult<Classroom>> PostClassroom(Classroom classroom)
         {
             context.Classrooms.Add(classroom);
-            await context .SaveChangesAsync();
+            await context.SaveChangesAsync();
 
             return Created($"api/classroom/{classroom.ClassroomId}", classroom);
         }

@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>WebApi</name>
+    </assembly>
+    <members>
+        <member name="M:WebApi.Controllers.ClassroomController.GetClassroom(System.Int32)">
+            <summary>
+            Permet de récuperer une classe depuis son identifiant
+            </summary>
+            <param name="classroomId">identifiant de la classe</param>
+            <returns>Un objet de type classe</returns>
+        </member>
+    </members>
+</doc>
