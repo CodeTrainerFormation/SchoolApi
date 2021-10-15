@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.OData;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -16,6 +17,8 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
+using WebApi.EdmModel;
+using WebApi.Hubs;
 
 namespace WebApi
 {
@@ -37,8 +40,9 @@ namespace WebApi
 
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { 
-                    Title = "WebApiForSchool", 
+                c.SwaggerDoc("v1", new OpenApiInfo
+                {
+                    Title = "WebApiForSchool",
                     Version = "v1",
                     Description = "My WebApi for school (students and teachers)"
                 });
@@ -58,7 +62,24 @@ namespace WebApi
                 });
             });
 
-            services.AddControllers();
+            services.AddSignalR(hubOptions =>
+            {
+                hubOptions.ClientTimeoutInterval = new TimeSpan(0, 0, 50);
+            }).AddMessagePackProtocol();
+
+            services.AddControllers()
+                .AddOData(options =>
+                {
+                    options.Select()
+                        .OrderBy()
+                        .Count()
+                        .Filter()
+                        .Expand()
+                        .SetMaxTop(5)
+                        .SkipToken();
+
+                    options.AddRouteComponents(EdmModelBuilder.GetEdmModel());
+                });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -92,6 +113,7 @@ namespace WebApi
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapHub<SchoolChatHub>("hubs/chat");
                 endpoints.MapControllers();
             });
 
